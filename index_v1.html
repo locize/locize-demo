@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="/" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/style_v1.css" />
+
+    <title>locize demo</title>
+</head>
+
+<body>
+    <div class="languageToggler" translated>
+      <a onClick="changeLanguage('en')">English</a>
+      &nbsp;|&nbsp;
+      <a onClick="changeLanguage('de')">Deutsch</a>
+    </div>
+
+    <h1 class="headline">Welcome to your locize demo project</h1>
+
+    <div id="mainAlert" class="alert" translated>
+      <p>This demo page will only work correctly if you load it passing querystring params "project_id" and "api_key"...</p>
+    </div>
+
+    <p class="subhead">We are happy to see you here...</p>
+
+    <!-- SECTION ONE -->
+    <a name="section1"></a>
+    <p class="info" translated>
+      Try out to change the values of the text segments below <small>(lng -> en; namespace -> translation)</small>.
+      On saving your changes locize will deploy the updated translation files. Refresh this page and see your changes.
+    </p>
+
+    <div class="center">
+      <p>Getting started can be very easy.</p>
+      <p>Go ahead and see how new keys flow into your project.</p>
+    </div>
+
+    <!-- SECTION TWO -->
+    <a name="section2"></a>
+    <div class="info" translated>
+      <p>Below are some text segments you won't find in your project <small>(lng -> en; namespace -> translation)</small>!
+      Setting saveMissing option to `true` will save submit them to your project.</p>
+      <button onclick="saveMissing()">Try out</button>
+      <p>After refresh give the site a few seconds and check your project for the new keys <small>(lng -> en; namespace -> translation)</small>.</p>
+    </div>
+
+    <div class="center">
+      <p>This is not yet translated.</p>
+      <p>Neither this can be found in your project.</p>
+    </div>
+
+    <a name="section3"></a>
+    <p class="info" translated>
+      While all above was translated using our <a href="http://locize.com/integration.html" target="_blank">locizify</a> script you can find below
+      a very simple react.js application using our <a href="http://locize.com/i18next.html" target="_blank">locize</a> script with <a href="https://github.com/i18next/react-i18next" target="_blank">react-i18next</a>.
+    </p>
+
+
+    <!-- react app and entry point -->
+    <div id="app" translated></div>
+    <script src="app_v1.js"></script>
+
+    <!-- demo script -->
+    <script>
+      var search = window.location.search;
+      var params = ['project_id', 'api_key'];
+      var alertEle = document.getElementById('mainAlert');
+      params.forEach(function(p) {
+        if (p.indexOf(p) > -1) alertEle.style.display = 'block';
+      });
+
+      function updateQueryStringParameter(uri, key, value) {
+        var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+        var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+        if (uri.match(re)) {
+          return uri.replace(re, '$1' + key + "=" + value + '$2');
+        }
+        else {
+          return uri + separator + key + "=" + value;
+        }
+      }
+
+      function changeLanguage(lng) {
+        window.location = updateQueryStringParameter(window.location.href, 'lng', lng);
+      }
+
+      function saveMissing() {
+        var loc = updateQueryStringParameter(window.location.href, 'lng', 'en');
+        loc = updateQueryStringParameter(loc, 'saveMissing', 'true');
+        window.location = loc + '#section2';
+      }
+    </script>
+</body>
+
+</html>
