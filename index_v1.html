@@ -29,10 +29,13 @@
 
     <!-- SECTION ONE -->
     <a name="section1"></a>
-    <p class="info" translated>
-      Try out to change the values of the text segments below <small>(lng -> en; namespace -> translation)</small>.
-      On saving your changes locize will deploy the updated translation files. Refresh this page and see your changes.
-    </p>
+    <div class="info" translated>
+      <h4>Translation</h4>
+      <p>
+        Try out to change the values of the text segments below <small>(lng -> en; namespace -> translation)</small>.
+        On saving your changes locize will deploy the updated translation files. Refresh this page and see your changes.
+      </p>
+    </div>
 
     <div class="center">
       <p>Getting started can be very easy.</p>
@@ -42,6 +45,7 @@
     <!-- SECTION TWO -->
     <a name="section2"></a>
     <div class="info" translated>
+      <h4>Missing segments</h4>
       <p>Below are some text segments you won't find in your project <small>(lng -> en; namespace -> translation)</small>!
       Setting saveMissing option to `true` will save submit them to your project.</p>
       <button onclick="saveMissing()">Try out</button>
@@ -53,26 +57,74 @@
       <p>Neither this can be found in your project.</p>
     </div>
 
+    <!-- SECTION THREE -->
     <a name="section3"></a>
-    <p class="info" translated>
-      While all above was translated using our <a href="http://locize.com/integration.html" target="_blank">locizify</a> script you can find below
-      a very simple react.js application using our <a href="http://locize.com/i18next.html" target="_blank">locize</a> script with <a href="https://github.com/i18next/react-i18next" target="_blank">react-i18next</a>.
-    </p>
+    <div class="info" translated>
+      <h4>Singlepage Application Demo</h4>
+      <p>To show the capabilities of locize not only handling static content translations we added a small reactjs application below. <small>(lng -> en; namespace -> app)</small></p>
+      <p>
+        All above was translated using our <a href="http://locize.com/integration.html" target="_blank">locizify</a> script.
+        The very simple react.js application uses <a href="http://locize.com/i18next.html" target="_blank">locize</a> script with <a href="https://github.com/i18next/react-i18next" target="_blank">react-i18next</a>.
+      </p>
+    </div>
 
 
     <!-- react app and entry point -->
     <div id="app" translated></div>
     <script src="app_v1.js"></script>
 
+    <!-- SECTION FOUR -->
+    <a name="section4"></a>
+    <div class="info" translated>
+      <h4>Your first own project</h4>
+      <p>Time to get started. Add your first project and start getting locized...</p>
+      <p>
+        You can delete the demo project if needed no longer.
+      </p>
+    </div>
+
+
     <!-- demo script -->
+    <script src="https://cdn.locize.io/locizify-dev.js"></script>
     <script>
+      // manual init of locizify
+      var backend = {
+        referenceLng: 'en',
+        apiKey: getParameterByName('api_key'),
+        projectId: getParameterByName('project_id')
+      }
+      if (getParameterByName('dev')) {
+        backend.loadPath = 'https://api-dev.locize.io/{{projectId}}/latest/{{lng}}/{{ns}}';
+        backend.addPath = 'https://api-dev.locize.io/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
+      }
+
+      window.locizify.init({
+        debug: true,
+        fallbackLng: 'en',
+        backend: backend
+      });
+
+      // get param
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      // params not exist
       var search = window.location.search;
       var params = ['project_id', 'api_key'];
       var alertEle = document.getElementById('mainAlert');
       params.forEach(function(p) {
-        if (p.indexOf(p) > -1) alertEle.style.display = 'block';
+        if (search.indexOf(p) < 0) alertEle.style.display = 'block';
       });
 
+
+      // location change
       function updateQueryStringParameter(uri, key, value) {
         var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
         var separator = uri.indexOf('?') !== -1 ? "&" : "?";
