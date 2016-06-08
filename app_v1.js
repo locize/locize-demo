@@ -10910,7 +10910,7 @@
 	  defaultNS: 'app',
 
 	  debug: false,
-	  saveMissing: true,
+	  saveMissing: false,
 
 	  interpolation: {
 	    escapeValue: false // not needed for react!!
