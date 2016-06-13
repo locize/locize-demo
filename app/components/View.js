@@ -3,7 +3,7 @@ import { translate, Interpolate } from 'react-i18next';
 import AnotherComponent from './AnotherComponent';
 
 
-@translate(['app'])
+@translate(['app'], { wait: true })
 class TranslatableView extends React.Component {
   render() {
     const { t } = this.props;
