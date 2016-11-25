@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <base href="/" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="css/flexbox.css" />
+  <link rel="stylesheet" href="style_v2.css" />
+
+  <title>locize demo</title>
+</head>
+
+<body style="display: none;">
+
+  <div class="container">
+    <div class="header">
+      <div class="brand">
+        <img src="assets/locize_white.svg" style="width: 100px; margin: 0 20px;"/>
+      </div>
+      <div class="nav">
+        <select translated id="languageSelect" class="minimal" onChange="handleSelectChange()">
+        </select>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <h1 id="userHeadline">Hi {{user}} - welcome to locize.</h1>
+
+      <p style="text-align: center; font-size: 1.2em; margin-bottom: 60px;">This subtitle needs some polishment...</p>
+
+      <div class="row">
+        <div class="col col-sm-4">
+          <h3>First thing first:</h3>
+        </div>
+        <div class="col col-sm-8 box-white">
+          <h4>To get a first feeling you should change the current language using the dropdown in the upper right corner.</h4>
+          <p>We already translated the content to german and italian. So you might checkout the most basic feature of locize - translating content.</p>
+          <p class="hint">All content got served directly via our CDN. Any change you do will be autopublished (Can be changed in settings).</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-4">
+          <h3>Continuous localization starts with:</h3>
+        </div>
+        <div class="col col-sm-8 box-white">
+          <h4>Being able to change your texts anytime...without the need to touch your website or application.</h4>
+          <p>The subtitle above might need some improved content.</p>
+          <p><a id="linkToSubtitle" class="btn" target="_blank">Change it</a>
+          <p class="hint">After changing the content and saving it reload this page to see it live!</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-4">
+          <h3>Continuous localization means also:</h3>
+        </div>
+        <div class="col col-sm-8 box-white">
+          <h4>Not manually adding new content to your translation project.</h4>
+          <p style="font-style: italic;"><strong>While all content on this page was translated already lets assume this sentence was newly added to your app.</strong></p>
+          <p>Check your project - as long as you do not reload it - all languages we provided are 100% translated. Reload your locize project and you will see new content was added without you adding it.</p>
+          <p>You can directly filter your reference language to show newly added content:</p>
+          <p><a id="linkToMissing" class="btn" target="_blank">See it</a>
+          <p class="hint">For all other languages this new translation segments are shown as untranslated.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-4">
+          <h3>And further:</h3>
+        </div>
+        <div class="col col-sm-8 box-white">
+          <h4>You should be able to add new languages without the help of your development.</h4>
+          <p>Add a new language by clicking the "Add new language" button:</p>
+          <p><a id="linkToAddLanguage" class="btn" target="_blank">Add a new language</a>
+          <p class="hint">After adding a new language reload this page and see your new locale was added to the language dropdown in the upper right corner.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-4">
+          <h3>Now it's your time:</h3>
+        </div>
+        <div class="col col-sm-8 box-white">
+          <h4>Create your first project.</h4>
+          <p>Add a new project by clicking the "Add new project" button:</p>
+          <p><a id="linkToAddProject" class="btn" target="_blank">Add a new project</a>
+          <p class="hint">After adding a new project you will get further information on to instrument your code.</p>
+          <h3>Got any question? <a href="mailto:support@locize.com">Contact us!</a></h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- demo script -->
+  <script src="https://cdn.locize.io/locizify.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    var getParameterByName = window.locizeUtils.getParameterByName;
+    var updateQueryStringParameter = window.locizeUtils.updateQueryStringParameter;
+
+    var appUrl = 'https://www.locize.io'; // /p/afk6scq0/v/latest/en/translation
+
+    // manual init of locizify
+    var backend = {
+      referenceLng: 'en',
+      apiKey: getParameterByName('api_key'),
+      projectId: getParameterByName('project_id')
+    }
+    if (getParameterByName('dev')) {
+      appUrl = 'https://dev.locize.io';
+
+      backend.loadPath = 'https://api-dev.locize.io/{{projectId}}/latest/{{lng}}/{{ns}}';
+      backend.addPath = 'https://api-dev.locize.io/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
+      backend.getLanguagesPath = 'https://api-dev.locize.io/languages/{{projectId}}';
+    }
+
+    // some dynamic content
+    var userHeadline = document.getElementById('userHeadline');
+    userHeadline.setAttribute('i18next-options', JSON.stringify({ user: getParameterByName('name')}));
+
+    var linkToSubtitle = document.getElementById('linkToSubtitle');
+    var urlToSubtitle = appUrl + '/p/' + getParameterByName('project_slug') + '/v/latest/' + (getParameterByName('lng') || 'en') + '/translation?search=This%20subtitle%20needs%20some%20polishment...';
+    linkToSubtitle.setAttribute('href', urlToSubtitle);
+
+    var linkToMissing = document.getElementById('linkToMissing');
+    var urlToMissing = appUrl + '/p/' + getParameterByName('project_slug') + '/v/latest/en/translation?state=bymiss';
+    linkToMissing.setAttribute('href', urlToMissing);
+
+    var linkToAddLanguage = document.getElementById('linkToAddLanguage');
+    var urlToAddLanguage = appUrl + '/p/' + getParameterByName('project_slug') + '/v/latest';
+    linkToAddLanguage.setAttribute('href', urlToAddLanguage);
+
+    var linkToAddProject = document.getElementById('linkToAddProject');
+    linkToAddProject.setAttribute('href', appUrl);
+
+
+    // init locizify
+    window.locizify.init({
+      debug: true,
+      fallbackLng: 'en',
+      backend: backend
+    });
+
+
+
+    // params not exist
+    var search = window.location.search;
+    var params = ['project_id', 'api_key'];
+    var alertEle = document.getElementById('mainAlert');
+    params.forEach(function(p) {
+      if (search.indexOf(p) < 0) alertEle.style.display = 'block';
+    });
+
+
+
+
+
+
+    function saveMissing() {
+      var loc = updateQueryStringParameter(window.location.href, 'lng', 'en');
+      loc = updateQueryStringParameter(loc, 'saveMissing', 'true');
+      window.location = loc + '#section2';
+    }
+  </script>
+</body>
+
+</html>
