@@ -76,7 +76,7 @@ a:hover, a:active {
   color: #15419a;
 }
 
-.btn {
+.btn, .btn:visited, a.btn, a.btn:visited {
   position: relative;
   color: #fff;
   background-color: #2196f3;
@@ -96,7 +96,9 @@ a:hover, a:active {
   text-transform: uppercase;
 }
 
-.btn:hover, .btn:active {
+.btn:hover, .btn:active, a.btn:hover, a.btn:active {
+  color: #fff;
+  text-decoration: none;
   background-color: #4B8DCE;
   box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.26);
 }
