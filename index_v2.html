@@ -30,7 +30,12 @@
 
       <h1 id="userHeadline">Hi {{user}} - welcome to locize.</h1>
 
-      <p style="text-align: center; font-size: 1.2em; margin-bottom: 60px;">This subtitle needs some polishment...</p>
+      <p style="text-align: center; font-size: 1.2em; max-width: 850px; margin: 10px auto; color: #555;">
+        Locize can be used to translate the content of a landing page in minutes.
+      </p>
+      <p style="text-align: center; font-size: 1.2em; max-width: 850px; margin: 10px auto 60px; color: #555;">
+        But it really starts to shine on larger scale – developers, content editors and translators will love it. They get the power of continuous localization – doing their job more efficient and in better quality.
+      </p>
 
       <div class="row">
         <div class="col col-sm-4">
@@ -38,8 +43,7 @@
         </div>
         <div class="col col-sm-8 box-white">
           <h4>To get a first feeling you should change the current language using the dropdown in the upper right corner.</h4>
-          <p>We already translated the content to german and italian. So you might checkout the most basic feature of locize - translating content.</p>
-          <p class="hint">All content got served directly via our CDN. Any change you do will be autopublished (Can be changed in settings).</p>
+          <p>We already translated the content to german and italian. So you might checkout the most basic feature of locize – translating content.</p>
         </div>
       </div>
 
@@ -48,10 +52,10 @@
           <h3>Continuous localization starts with:</h3>
         </div>
         <div class="col col-sm-8 box-white">
-          <h4>Being able to change your texts anytime...without the need to touch your website or application.</h4>
-          <p>The subtitle above might need some improved content.</p>
+          <h4>To be able to change your texts anytime...without the need to touch your website or application.</h4>
+          <p style="font-style: italic;"><strong>This text might need some change?</strong></p>
           <p><a id="linkToSubtitle" class="btn" target="_blank">Change it</a>
-          <p class="hint">After changing the content and saving it reload this page to see it live!</p>
+          <p class="hint">After changing the content and saving it reload this page to see it live! All content got served directly via our CDN. Any change you do will be auto published (could be overridden in settings to manual publishing).</p>
         </div>
       </div>
 
@@ -60,12 +64,12 @@
           <h3>Continuous localization means also:</h3>
         </div>
         <div class="col col-sm-8 box-white">
-          <h4>Not manually adding new content to your translation project.</h4>
+          <h4>No need to manually add new content to your translation project.</h4>
           <p style="font-style: italic;"><strong>While all content on this page was translated already lets assume this sentence was newly added to your app.</strong></p>
-          <p>Check your project - as long as you do not reload it - all languages we provided are 100% translated. Reload your locize project and you will see new content was added without you adding it.</p>
+          <p>Check your project – as long as you did not reload it – all languages we provided show up as 100% translated. Reload your locize project now and you will see new content was added without you adding it.</p>
           <p>You can directly filter your reference language to show newly added content:</p>
           <p><a id="linkToMissing" class="btn" target="_blank">See it</a>
-          <p class="hint">For all other languages this new translation segments are shown as untranslated.</p>
+          <p class="hint">The code you added to your project is able to directly submit new content to your project. No longer adding resources by hand. Your developers can focus on your application again – no time consuming extra steps to localizing it.</p>
         </div>
       </div>
 
@@ -75,11 +79,34 @@
         </div>
         <div class="col col-sm-8 box-white">
           <h4>You should be able to add new languages without the help of your development.</h4>
-          <p>Add a new language by clicking the "Add new language" button:</p>
-          <p><a id="linkToAddLanguage" class="btn" target="_blank">Add a new language</a>
+          <p>Open your project and click on the "Add new language" button there.</p>
+          <p><a id="linkToAddLanguage" class="btn" target="_blank">Open your project</a>
           <p class="hint">After adding a new language reload this page and see your new locale was added to the language dropdown in the upper right corner.</p>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col col-sm-4">
+          <h3>Learn more:</h3>
+        </div>
+        <div class="col col-sm-8 box-white">
+          <h4>You can find more information.</h4>
+          <p>About additional services, versioning, namespaces, caching and more in our documentation:</p>
+          <ul>
+            <li><a href="http://locize.com/vs-alternatives.html" target="_blank">Read our documentation</a></li>
+          </ul>
+          <p>About translation features like plurals, context:</p>
+          <ul>
+            <li><a href="http://i18next.com/translate/interpolation/" target="_blank">Learn more here</a></li>
+          </ul>
+          <p>About localization in general in our blog, eg:</p>
+          <ul>
+            <li><a href="http://locize.com/2016-11-16-localization-fun/" target="_blank">Localization should be fun</a></li>
+            <li><a href="http://locize.com/2016-10-05-continuous-development-integration-and-localization-cd/" target="_blank">Continuous Localization</a></li>
+          </ul>
+        </div>
+      </div>
+
 
       <div class="row">
         <div class="col col-sm-4">
@@ -87,9 +114,9 @@
         </div>
         <div class="col col-sm-8 box-white">
           <h4>Create your first project.</h4>
-          <p>Add a new project by clicking the "Add new project" button:</p>
-          <p><a id="linkToAddProject" class="btn" target="_blank">Add a new project</a>
-          <p class="hint">After adding a new project you will get further information on to instrument your code.</p>
+          <p>Add a new project by clicking the "Add new project" on your dashboard:</p>
+          <p><a id="linkToAddProject" class="btn" target="_blank">Open your dashboard</a>
+          <p class="hint">After adding a new project you will get further instructions on how to instrument your code.</p>
           <h3>Got any question? <a href="mailto:support@locize.com">Contact us!</a></h3>
         </div>
       </div>
@@ -127,7 +154,7 @@
     userHeadline.setAttribute('i18next-options', JSON.stringify({ user: getParameterByName('name')}));
 
     var linkToSubtitle = document.getElementById('linkToSubtitle');
-    var urlToSubtitle = appUrl + '/p/' + getParameterByName('project_slug') + '/v/latest/' + (getParameterByName('lng') || 'en') + '/translation?search=This%20subtitle%20needs%20some%20polishment...';
+    var urlToSubtitle = appUrl + '/p/' + getParameterByName('project_slug') + '/v/latest/' + (getParameterByName('lng') || 'en') + '/translation?search=This%20text%20might%20need%20some%20change%3F';
     linkToSubtitle.setAttribute('href', urlToSubtitle);
 
     var linkToMissing = document.getElementById('linkToMissing');
