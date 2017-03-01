@@ -56,6 +56,11 @@
           <p style="font-style: italic;"><strong>This text might need some change?</strong></p>
           <p><a id="linkToSubtitle" class="btn" target="_blank">Change it</a>
           <p class="hint">After changing the content and saving it reload this page to see it live! All content got served directly via our CDN. Any change you do will be auto published (could be overridden in settings to manual publishing).</p>
+          <a name="editorSection"></a>
+          <h4>But localization should be simpler...then having to search text contained on your website in the locize project.</h4>
+          <p>You could enable direct linking from your website to the locize project by adding the querystring "locize=true" to the url. Doing so you can click any content and that will directly open in locize.</p>
+          <p><a id="linkToEditor" class="btn" target="_blank" onclick="enableEditor()">Enable it</a></p>
+          <p class="hint">Eventual you will need to allow the popup blocked by browser so we could open a locize tab connected with this window. You could turn on/off by using the button in bottom right corner.</p>
         </div>
       </div>
 
@@ -127,7 +132,7 @@
 
 
   <!-- demo script -->
-  <script src="https://cdn.locize.io/locizify.js"></script>
+  <script src="https://unpkg.com/locizify@^2.0.0"></script>
   <script src="shared.js"></script>
   <script>
     var getParameterByName = window.locizeUtils.getParameterByName;
@@ -173,7 +178,10 @@
     window.locizify.init({
       debug: true,
       fallbackLng: 'en',
-      backend: backend
+      backend: backend,
+      editor: {
+        url: 'https://dev.locize.io'
+      }
     });
 
 
@@ -188,7 +196,10 @@
 
 
 
-
+    function enableEditor() {
+      var loc = updateQueryStringParameter(window.location.href, 'locize', 'true');
+      window.location = loc + '#editorSection';
+    }
 
 
     function saveMissing() {
