@@ -146,6 +146,7 @@
       apiKey: getParameterByName('api_key'),
       projectId: getParameterByName('project_id')
     }
+
     if (getParameterByName('dev')) {
       appUrl = 'https://dev.locize.io';
 
@@ -173,16 +174,20 @@
     var linkToAddProject = document.getElementById('linkToAddProject');
     linkToAddProject.setAttribute('href', appUrl);
 
-
-    // init locizify
-    window.locizify.init({
+    var locOptions = {
       debug: true,
       fallbackLng: 'en',
-      backend: backend,
-      editor: {
+      backend: backend
+    };
+
+    if (getParameterByName('dev')) {
+      locOptions.editor = {
         url: 'https://dev.locize.io'
       }
-    });
+    }
+
+    // init locizify
+    window.locizify.init(locOptions);
 
 
 

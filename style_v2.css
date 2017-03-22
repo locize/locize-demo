@@ -107,7 +107,7 @@ a:hover, a:active {
 select {
 
   /* styling */
-  background-color: transparent;
+  background-color: #15419a;
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 14px;
 	color: #fff;
@@ -129,8 +129,12 @@ select {
   -moz-appearance: none;
 }
 
-select:hover {
+select:hover, select:focus {
 	background: #4B8DCE;
+}
+
+select::-ms-expand {
+    display: none;
 }
 
 
