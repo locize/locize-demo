@@ -33,7 +33,8 @@ locizify.getLanguages(function(err, lngs) {
   availableLngs = Object.keys(lngs || {});
   availableLngs.forEach(function(l) {
     var lng = lngs[l];
-    if (lng.translated.production < 0.9) return;
+    // turn this on to avoid showing untranslated languages
+    // if (lng.translated.latest < 0.9) return;
     var optEle = document.createElement("OPTION");
     optEle.setAttribute('value', l);
     optEle.innerHTML = lng.nativeName;
