@@ -191,7 +191,10 @@
 
     if (getParameterByName('dev')) {
       locOptions.editor = {
-        url: 'https://dev.locize.io'
+        url: 'https://dev.locize.io',
+        onEditorSaved: function(lng, ns) {
+          location.reload();
+        }
       }
     }
 
