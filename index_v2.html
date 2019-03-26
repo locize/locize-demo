@@ -57,10 +57,6 @@
           <p><a id="linkToSubtitle" class="btn" target="_blank">Change it</a>
           <p class="hint">After changing the content and saving it reload this page to see it live! All content got served directly via our CDN. Any change you do will be auto published (could be overridden in settings to manual publishing).</p>
           <a name="editorSection"></a>
-          <h4>But localization should be simpler...then having to search text contained on your website in the locize project.</h4>
-          <p>You could enable direct linking from your website to the locize project by adding the querystring "locize=true" to the url. Doing so you can click any content and that will directly open in locize.</p>
-          <p><a id="linkToEditor" class="btn" target="_blank" onclick="enableEditor()">Enable it</a></p>
-          <p class="hint">Eventual you will need to allow the popup blocked by browser so we could open a locize tab connected with this window. You could turn on/off by using the button in bottom right corner.</p>
         </div>
       </div>
 
@@ -87,6 +83,18 @@
           <p>Open your project and click on the "Add new language" button there.</p>
           <p><a id="linkToAddLanguage" class="btn" target="_blank">Open your project</a>
           <p class="hint">After adding a new language reload this page and see your new locale was added to the language dropdown in the upper right corner.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-sm-4">
+          <h3>Continuous localization ends with:</h3>
+        </div>
+        <div class="col col-sm-8 box-white">
+          <h4>Localization should be simpler...then having to search text contained on your website in the locize project.</h4>
+          <p>You could enable direct linking from your website to the locize project by adding the querystring "locize=true" to the url. Doing so you can click any content and that will directly open in locize.</p>
+          <p><a id="linkToEditor" class="btn" target="_blank" onclick="enableEditor()">Enable it</a></p>
+          <p class="hint">Eventual you will need to allow the popup blocked by browser so we could open a locize tab connected with this window. You could turn on/off by using the button in bottom right corner.</p>
         </div>
       </div>
 
@@ -144,7 +152,8 @@
     var backend = {
       referenceLng: 'en',
       apiKey: getParameterByName('api_key'),
-      projectId: getParameterByName('project_id')
+      projectId: getParameterByName('project_id'),
+      allowedAddOrUpdateHosts: ["localhost", "demo.locize.io"]
     }
 
     if (getParameterByName('dev')) {
