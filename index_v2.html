@@ -153,6 +153,7 @@
       referenceLng: 'en',
       apiKey: getParameterByName('api_key'),
       projectId: getParameterByName('project_id'),
+      getLanguagesPath: `https://api.locize.io/languages/{{projectId}}?t=${new Date().getTime()}`,
       allowedAddOrUpdateHosts: ["localhost", "demo.locize.io"]
     }
 
@@ -161,7 +162,7 @@
 
       backend.loadPath = 'https://api-dev.locize.io/{{projectId}}/latest/{{lng}}/{{ns}}';
       backend.addPath = 'https://api-dev.locize.io/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
-      backend.getLanguagesPath = 'https://api-dev.locize.io/languages/{{projectId}}';
+      backend.getLanguagesPath = `https://api-dev.locize.io/languages/{{projectId}}?t=${new Date().getTime()}`;
     }
 
     // some dynamic content
