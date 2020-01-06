@@ -87,7 +87,7 @@
 
 
     <!-- demo script -->
-    <script src="https://cdn.locize.io/locizify.js"></script>
+    <script src="https://cdn.locize.app/locizify.js"></script>
     <script>
       // manual init of locizify
       var backend = {
@@ -96,8 +96,8 @@
         projectId: getParameterByName('project_id')
       }
       if (getParameterByName('dev')) {
-        backend.loadPath = 'https://api-dev.locize.io/{{projectId}}/latest/{{lng}}/{{ns}}';
-        backend.addPath = 'https://api-dev.locize.io/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
+        backend.loadPath = 'https://api-dev.locize.app/{{projectId}}/latest/{{lng}}/{{ns}}';
+        backend.addPath = 'https://api-dev.locize.app/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
       }
 
       window.locizify.init({

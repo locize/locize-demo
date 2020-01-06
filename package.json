@@ -1,7 +1,7 @@
 {
   "name": "locize_demo",
   "version": "0.0.0",
-  "description": "the demo application used inside of locize.io",
+  "description": "the demo application used inside of locize.app",
   "private": true,
   "main": "index.js",
   "scripts": {

@@ -146,23 +146,23 @@
     var getParameterByName = window.locizeUtils.getParameterByName;
     var updateQueryStringParameter = window.locizeUtils.updateQueryStringParameter;
 
-    var appUrl = 'https://www.locize.io'; // /p/afk6scq0/v/latest/en/translation
+    var appUrl = 'https://www.locize.app'; // /p/afk6scq0/v/latest/en/translation
 
     // manual init of locizify
     var backend = {
       referenceLng: 'en',
       apiKey: getParameterByName('api_key'),
       projectId: getParameterByName('project_id'),
-      getLanguagesPath: `https://api.locize.io/languages/{{projectId}}?t=${new Date().getTime()}`,
-      allowedAddOrUpdateHosts: ["localhost", "demo.locize.io"]
+      getLanguagesPath: `https://api.locize.app/languages/{{projectId}}?t=${new Date().getTime()}`,
+      allowedAddOrUpdateHosts: ["localhost", "demo.locize.app"]
     }
 
     if (getParameterByName('dev')) {
-      appUrl = 'https://dev.locize.io';
+      appUrl = 'https://dev.locize.app';
 
-      backend.loadPath = 'https://api-dev.locize.io/{{projectId}}/latest/{{lng}}/{{ns}}';
-      backend.addPath = 'https://api-dev.locize.io/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
-      backend.getLanguagesPath = `https://api-dev.locize.io/languages/{{projectId}}?t=${new Date().getTime()}`;
+      backend.loadPath = 'https://api-dev.locize.app/{{projectId}}/latest/{{lng}}/{{ns}}';
+      backend.addPath = 'https://api-dev.locize.app/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
+      backend.getLanguagesPath = `https://api-dev.locize.app/languages/{{projectId}}?t=${new Date().getTime()}`;
     }
 
     // some dynamic content
@@ -192,7 +192,7 @@
 
     if (getParameterByName('dev')) {
       locOptions.editor = {
-        url: 'https://dev.locize.io',
+        url: 'https://dev.locize.app',
       }
     }
 

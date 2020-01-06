@@ -16,8 +16,8 @@ var backend = {
   projectId: getParameterByName('project_id')
 }
 if (getParameterByName('dev')) {
-  backend.loadPath = 'https://api-dev.locize.io/{{projectId}}/latest/{{lng}}/{{ns}}';
-  backend.addPath = 'https://api-dev.locize.io/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
+  backend.loadPath = 'https://api-dev.locize.app/{{projectId}}/latest/{{lng}}/{{ns}}';
+  backend.addPath = 'https://api-dev.locize.app/missing/{{projectId}}/latest/{{lng}}/{{ns}}';
 }
 
 i18n
