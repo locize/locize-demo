@@ -11,7 +11,7 @@
     "build:prod": "NODE_ENV=production webpack"
   },
   "dependencies": {
-    "i18next": "3.1.0",
+    "i18next": "19.0.2",
     "locize": "0.3.0",
     "react": "15.1.0",
     "react-dom": "15.1.0",
